@@ -1,13 +1,16 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/db";
+import { User } from "./models/user.model";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
-
 const app = express();
 const PORT = process.env.PORT || 5000;
+app.use(express.json());
 
+const JWT_PASSWORD =  process.env.SECRET_KEY;
 
 connectDB(process.env.MONGO_URI!)
   .then(() => {
@@ -19,35 +22,3 @@ connectDB(process.env.MONGO_URI!)
     console.error("Error starting the server:", error);
   });
 
-// app.post("/api/v1/signup", (req, res) => {
-
-
-// })
-
-// app.post("/api/v1/signin", (req, res) => {
-
-// })
-
-// app.post("/api/v1/content", (req, res) => {
-
-// })
-
-
-// app.get("/api/v1/content", (req, res) => {
-
-// })
-
-
-// app.delete("/api/v1/content", (req, res) => {
-
-
-// })
-
-// app.post("/api/v1/brain/share", (req, res) => {
-
-
-// })
-// app.get("/api/v1/brain/:shareLink", (req, res) => {
-
-
-// })
